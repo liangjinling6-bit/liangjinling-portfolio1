@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>梁金玲 · 作品集</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #02050f;
+      --surface: rgba(18,26,48,0.92);
+      --surface-soft: rgba(18,26,48,0.75);
+      --text: #f7f9ff;
+      --muted: #8da0c9;
+      --accent: #7c3aed;
+      --accent-light: rgba(124,58,237,0.18);
+      --border: rgba(255,255,255,0.08);
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-synthesis: none;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: radial-gradient(circle at top left, rgba(124,58,237,0.18), transparent 22%), radial-gradient(circle at bottom right, rgba(15,23,42,0.22), transparent 20%), var(--bg); color: var(--text); }
+    body { line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    .page { max-width: 1180px; margin: 0 auto; padding: 40px 24px 64px; }
+    header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 24px; }
+    .brand { font-size: 0.85rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); }
+    .nav { display: flex; flex-wrap: wrap; gap: 18px; }
+    .nav a { font-size: 0.94rem; color: var(--muted); transition: color .2s ease; }
+    .nav a:hover { color: var(--text); }
+    .hero { display: grid; gap: 24px; padding: 40px 0 32px; }
+    .hero-title { font-size: clamp(3.2rem, 6vw, 5rem); max-width: 12ch; line-height: 1.02; }
+    .lead { max-width: 760px; color: var(--muted); font-size: 1.05rem; margin-top: 6px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; padding: 14px 24px; border-radius: 999px; font-weight: 600; transition: transform .2s ease, box-shadow .2s ease; }
+    .button-primary { background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white; box-shadow: 0 18px 40px rgba(124,58,237,0.2); }
+    .button-secondary { border: 1px solid rgba(255,255,255,0.12); color: var(--text); }
+    .button:hover { transform: translateY(-2px); }
+    .hero-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 36px; }
+    .stat-card { background: var(--surface-soft); border: 1px solid var(--border); border-radius: 22px; padding: 22px; }
+    .stat-card h3 { margin: 0 0 10px; font-size: 0.95rem; color: #fff; }
+    .stat-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .section { margin-top: 56px; }
+    .section h2 { font-size: 2rem; margin-bottom: 24px; }
+    .projects { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 28px; overflow: hidden; box-shadow: 0 24px 70px rgba(0,0,0,0.22); cursor: pointer; transition: transform .25s ease, border-color .25s ease; }
+    .project-card:hover { transform: translateY(-4px); border-color: rgba(124,58,237,0.3); }
+    .project-card img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; }
+    .project-content { padding: 24px; }
+    .project-content h3 { margin: 0 0 12px; font-size: 1.18rem; }
+    .project-content p { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.75; }
+    .skill-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .skill-card { background: var(--surface-soft); border: 1px solid var(--border); border-radius: 24px; padding: 24px; }
+    .skill-card h3 { margin: 0 0 12px; font-size: 1rem; }
+    .skill-card p { margin: 0; color: var(--muted); line-height: 1.75; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .tag { display: inline-flex; padding: 8px 14px; background: var(--accent-light); color: #d8b4fe; border-radius: 999px; font-size: 0.88rem; }
+    .experience-list { display: grid; gap: 18px; }
+    .experience-card { background: var(--surface-soft); border: 1px solid var(--border); border-radius: 24px; padding: 24px; }
+    .experience-card h3 { margin: 0 0 10px; font-size: 1rem; }
+    .experience-card p { margin: 0; color: var(--muted); line-height: 1.75; }
+    .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 28px; padding: 28px; }
+    .contact-card p { margin: 0 0 12px; color: var(--muted); line-height: 1.75; }
+    .detail-section { display: none; margin-top: 56px; }
+    .detail-section.active { display: block; }
+    .detail-card { background: var(--surface); border: 1px solid var(--border); border-radius: 28px; overflow: hidden; box-shadow: 0 24px 70px rgba(0,0,0,0.22); }
+    .detail-card img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+    .detail-body { padding: 28px; }
+    .detail-body h3 { margin: 0 0 14px; font-size: 1.5rem; }
+    .detail-body p { margin: 0 0 16px; color: var(--muted); line-height: 1.8; }
+    .detail-meta { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .detail-meta .meta-item { background: var(--surface-soft); border: 1px solid var(--border); border-radius: 18px; padding: 18px; }
+    .detail-meta .meta-item h4 { margin: 0 0 8px; font-size: 0.95rem; color: #fff; }
+    .detail-meta .meta-item p { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+    .close-button { display: inline-flex; margin-top: 20px; padding: 12px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); color: var(--text); transition: background .2s ease; }
+    .close-button:hover { background: rgba(255,255,255,0.06); }
+    footer { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; color: var(--muted); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+    @media (max-width: 720px) {
+      .hero-grid, .projects, .skill-grid { grid-template-columns: 1fr; }
+      header { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">LIANG JINLING</div>
+      <nav class="nav">
+        <a href="#work">作品</a>
+        <a href="#skills">能力</a>
+        <a href="#experience">经历</a>
+        <a href="#contact">联系</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">UI 动效设计师 · AI 工作流</div>
+      <h1 class="hero-title">设计有张力的界面与动效作品集</h1>
+      <p class="lead">我专注于 UI、动效与特效设计，结合 AI 创意流程，将视觉表现与交互体验融合，打造可传播、可落地的数字内容。</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#contact">联系我</a>
+        <a class="button button-secondary" href="#work">查看作品</a>
+      </div>
+      <div class="hero-grid">
+        <div class="stat-card"><h3>求职目标</h3><p>UI 动效 / 特效 / 视觉设计</p></div>
+        <div class="stat-card"><h3>核心工具</h3><p>Figma · After Effects · Photoshop · ComfyUI · Lovable · Gemini</p></div>
+        <div class="stat-card"><h3>联系</h3><p>3021459633@qq.com<br>197 2228 1565</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <h2>精选作品</h2>
+      <div class="projects">
+        <a class="project-card" href="work-xilan.html">
+          <img src="https://id-preview--2463d1c0-caad-4b62-8cd8-7b9d330cbc0e.lovable.app/assets/work-xilan-CtrFnq-J.jpg" alt="西兰卡普 · 非遗纹样数字二创">
+          <div class="project-content"><h3>西兰卡普 · 非遗纹样数字二创</h3><p>将国家级非遗纹样转化为数字视觉系统，结合 AE 动效与交互视觉，让传统设计在社交语境中焕发年轻力。</p></div>
+        </a>
+        <a class="project-card" href="work-ai.html">
+          <img src="https://id-preview--2463d1c0-caad-4b62-8cd8-7b9d330cbc0e.lovable.app/assets/work-eco-DsXVDLEx.jpg" alt="AI 驱动的 UI 概念探索">
+          <div class="project-content"><h3>AI 驱动的 UI 概念探索</h3><p>围绕玻璃拟态与流体光视觉，使用 ComfyUI 与 Gemini 生图迭代，打造高完成度移动端界面概念与动效说明。</p></div>
+        </a>
+        <a class="project-card" href="work-green.html">
+          <img src="https://id-preview--2463d1c0-caad-4b62-8cd8-7b9d330cbc0e.lovable.app/assets/work-chaoshan-5dMpxdUj.jpg" alt="绿色潇湘 · 民宿减塑视觉">
+          <div class="project-content"><h3>绿色潇湘 · 民宿减塑视觉</h3><p>为环保组织设计减塑宣传海报与场景视觉，强调主题信息的传播与实际应用。</p></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <h2>能力与工具</h2>
+      <div class="skill-grid">
+        <article class="skill-card"><h3>设计能力</h3><p>UI 界面设计、动效设计、视觉特效、视觉系统、品牌形象与内容呈现。</p></article>
+        <article class="skill-card"><h3>AI 创意工作流</h3><p>熟练使用 AI prompt 与生成式工具，结合 ComfyUI、Gemini 与 Lovable，把创意快速转化为高质量视觉素材。</p></article>
+      </div>
+      <div class="tag-list"><span class="tag">Figma</span><span class="tag">After Effects</span><span class="tag">Photoshop</span><span class="tag">ComfyUI</span><span class="tag">Lovable</span><span class="tag">Gemini</span></div>
+    </section>
+
+
+    <section class="section" id="experience">
+      <h2>经历与荣誉</h2>
+      <div class="experience-list">
+        <article class="experience-card"><h3>湖南广电 · 芒果美术馆</h3><p>宣传策划实习生，负责展览宣传设计、海报与短视频制作，提升视觉传播效果与内容互动。</p></article>
+        <article class="experience-card"><h3>长沙理工大学 · 数字媒体艺术</h3><p>本科在读，GPA 3.6，专业前 10%，专注数字媒体、界面设计与视觉表达。</p></article>
+        <article class="experience-card"><h3>荣誉</h3><p>2025 湖南省大学生数字媒体创意设计大赛一等奖；国家励志奖学金；绿色潇湘减塑作品被实际采纳。</p></article>
+      </div>
+      <p class="section-note">求职方向：UI 动效、特效、界面设计。欢迎内容视觉、品牌设计与数字传播项目合作。</p>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>联系我</h2>
+      <div class="contact-card">
+        <p>如果你有 UI / 动效 / 特效设计项目，欢迎联系我一起把作品打造为更具表现力的数字内容。</p>
+        <div class="tag-list"><span class="tag">邮箱：3021459633@qq.com</span><span class="tag">电话：197 2228 1565</span></div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2026 梁金玲 · UI 动效设计 & AI 视觉工作流</div>
+      <div class="footer-links"><a href="mailto:3021459633@qq.com">发邮件</a><a href="tel:19722281565">拨打电话</a></div>
+    </footer>
+  </div>
+</body>
+</html>
